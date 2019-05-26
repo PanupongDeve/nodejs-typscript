@@ -3,10 +3,19 @@ import * as express from 'express';
 import ServerInterface from '../interfaces/ServerInterface';
 import Controller from '../Controller';
 import GlobalMiddleware from '../GlobalMiddleware';
+import { MongooseHelper } from '../Services/Mongoose';
+import {
+    ServerConfig
+} from '../config';
 
 export class Server implements ServerInterface {
-    private port = 3000 || Number(process.env.PORT);
+    private port = ServerConfig.port;
     private app = express();
+
+    private applyDatabase() {
+        const mongooseHelper = new MongooseHelper();
+        mongooseHelper.connect();
+    }
 
     private applyMiddleware() {
         const globalMiddleware = new GlobalMiddleware(this.app);
@@ -19,6 +28,7 @@ export class Server implements ServerInterface {
     }
 
     runServer() {
+        this.applyDatabase();
         this.applyMiddleware();
         this.applyController();
         this.app.listen(
