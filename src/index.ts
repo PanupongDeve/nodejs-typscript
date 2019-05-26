@@ -1,5 +1,2 @@
-import { Server } from './Server';
-
-const server = new Server();
-
+import { server } from './Server';
 server.runServer();

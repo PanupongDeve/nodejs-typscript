@@ -5,3 +5,10 @@ export class ServerConfig  {
 export class MongDbServiceConfig {
     static auth_url = 'mongodb://panupongdeve:test1234@ds058369.mlab.com:58369/typescript-demo';
 }
+
+export enum SelectServer {
+    mongo = 'mongo',
+    mysql = 'mysql'
+}
+
+export const selectedServer: SelectServer = SelectServer.mongo;
