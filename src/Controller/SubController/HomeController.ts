@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
-import SubControllerInterfac from '../../interfaces/SubControllerInterface';
+import SubControllerInterface from '../../interfaces/SubControllerInterface';
 
-export default class HomeController implements SubControllerInterfac {
+export default class HomeController implements SubControllerInterface {
     private prefix: string;
     private router: Router;
 
@@ -13,8 +13,10 @@ export default class HomeController implements SubControllerInterfac {
     }
 
     private async welcome(req: Request, res: Response, next: NextFunction): Promise<void> {
-        const data = "Hello World";
-        res.send(data);
+        req.session.views = (req.session.views || 0) + 1;
+
+        // Write response
+        res.send(req.session.views + ' views');
     }
 
     getRouter() {

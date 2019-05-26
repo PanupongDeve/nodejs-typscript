@@ -1,3 +1,3 @@
 export default interface ControllerInterface {
-  apply(): void;
+    apply(): void;
 }

@@ -1,3 +1,3 @@
 export default interface ServerInterface {
-  runServer(): void;
+    runServer(): void;
 }
