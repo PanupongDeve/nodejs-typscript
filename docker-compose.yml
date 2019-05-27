@@ -1,0 +1,19 @@
+version: "2"
+services: 
+  node:
+    build:
+      context: .
+      dockerfile: ./container/node.Dockerfile
+    ports:
+      - 3000:3000
+  web_server:
+    build:
+      context: .
+      dockerfile: ./container/webserver.Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - node
+    volumes:
+    - ./caddy/.caddy:/root/.caddy
