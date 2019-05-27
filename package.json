@@ -34,6 +34,7 @@
   },
   "scripts": {
     "dev": "nodemon",
+    "serve": "node dist/index.js",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "typecheck": "tsc -p tsconfig.build.json --noEmit",
