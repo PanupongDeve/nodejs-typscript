@@ -2,10 +2,7 @@ import ServerInterface from '../interfaces/ServerInterface';
 import ServerMongo from './ServerMongo';
 import ServerMysql from './ServerMysql';
 
-import {
-    selectedServer,
-    SelectServer
-} from '../config';
+import { selectedServer, SelectServer } from '../config';
 
 export let server: ServerInterface;
 

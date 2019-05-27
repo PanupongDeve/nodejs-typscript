@@ -1,8 +1,9 @@
+import {getRepository} from "typeorm";
 import { Router, Request, Response, NextFunction } from 'express';
 
 import SubControllerInterface from '../../interfaces/SubControllerInterface';
 
-import Kitty from '../../Services/Mongoose/Model/Kitty';
+import {User} from "../../Services/TypeOrm/entity/User";
 
 export default class HomeController implements SubControllerInterface {
     private prefix: string;
@@ -15,11 +16,17 @@ export default class HomeController implements SubControllerInterface {
     }
 
     private async welcome(req: Request, res: Response, next: NextFunction): Promise<void> {
-        req.session.views = (req.session.views || 0) + 1;
-        const response = await Kitty.find();
-        console.log(response);
+        const userRepository = getRepository(User);
+        const newUser = await userRepository.create({
+            firstName: "panupong",
+            lastName: "Chamsomboon",
+            isActive: true
+        });
+        await userRepository.save(newUser);
+        const user = await userRepository.find();
+        console.log(user);
         // Write response
-        res.json(response);
+        res.json(user);
     }
 
     getRouter() {

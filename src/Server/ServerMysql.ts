@@ -3,16 +3,18 @@ import * as express from 'express';
 import ServerInterface from '../interfaces/ServerInterface';
 import Controller from '../Controller';
 import GlobalMiddleware from '../GlobalMiddleware';
+import { ServerConfig } from '../config';
 import {
-    ServerConfig
-} from '../config';
+    TypeOrmHelper
+} from '../Services/TypeOrm';
 
 export default class ServerMysql implements ServerInterface {
     private port = ServerConfig.port;
     private app = express();
 
-    private applyDatabase() {
-
+    private async applyDatabase() {
+        const typeOrmHelper: TypeOrmHelper = new TypeOrmHelper();
+        await typeOrmHelper.connect();
     }
 
     private applyMiddleware() {

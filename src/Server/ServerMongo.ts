@@ -4,9 +4,7 @@ import ServerInterface from '../interfaces/ServerInterface';
 import Controller from '../Controller';
 import GlobalMiddleware from '../GlobalMiddleware';
 import { MongooseHelper } from '../Services/Mongoose';
-import {
-    ServerConfig
-} from '../config';
+import { ServerConfig } from '../config';
 
 export default class ServerMongo implements ServerInterface {
     private port = ServerConfig.port;
