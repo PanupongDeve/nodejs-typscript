@@ -17,3 +17,4 @@ services:
       - node
     volumes:
     - ./caddy/.caddy:/root/.caddy
+    - ./caddy/Caddyfile:/etc/Caddyfile
